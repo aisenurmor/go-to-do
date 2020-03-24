@@ -56,7 +56,6 @@ class CategoryTableViewController: SwipeTableViewController {
     
     //MARK: - Data Manipulation Methods
     func save(category: Category) {
-        //closure içinde olduğumuz için işlemi do catch ile kontrol altına almalıyız.
         do {
             try realm.write {
                 realm.add(category)

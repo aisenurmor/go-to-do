@@ -17,7 +17,7 @@ class TodoListViewController: SwipeTableViewController {
     @IBOutlet var noDataView: UIView!
     
     var selectedCategory: Category? {
-        didSet { // Yeni değer kaydedildikten hemen sonra çalışırlar.
+        didSet {
             loadItems()
         }
     }
@@ -47,7 +47,6 @@ class TodoListViewController: SwipeTableViewController {
     }
     
     // MARK: - TableView Datasource
-    // tableView'daki cell sayısını veriyoruz.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numOfSections: Int = 0
         if todoItems!.count > 0 {
@@ -60,7 +59,6 @@ class TodoListViewController: SwipeTableViewController {
         return numOfSections
     }
     
-    // tableView için cell componentini tanıtıyoruz.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
@@ -91,7 +89,6 @@ class TodoListViewController: SwipeTableViewController {
     }
     
     // MARK: - TableView Delegate Methods
-    // tableView cell'e tıklanınca ne olacak?
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let item = todoItems?[indexPath.row] {
             do {
@@ -141,7 +138,6 @@ class TodoListViewController: SwipeTableViewController {
     
     //MARK: - Model manipulate methods
     func saveItems(item: Item) {
-        //closure içinde olduğumuz için işlemi do catch ile kontrol altına almalıyız.
         do {
             try realm.write {
                 realm.add(item)
@@ -184,7 +180,7 @@ extension TodoListViewController: UISearchBarDelegate {
         } else {
             loadItems()
             DispatchQueue.main.async {
-                searchBar.resignFirstResponder() //uygulama ilk açıldığındaki haline geri döner (searchBar)
+                searchBar.resignFirstResponder()
             }
         }
     }
