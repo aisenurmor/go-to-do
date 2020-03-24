@@ -1,3 +1,3 @@
 # go-to-do
 
-Todo application with Swift5 and Realm.
+Simple Todo list app using Realm database and Swift5.
